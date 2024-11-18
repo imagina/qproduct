@@ -159,7 +159,6 @@ export default {
                 }
               }
             },
-
             /* status */
             {
               name: 'status', label: this.$tr('isite.cms.form.status'), field: 'status', align: 'center', style: 'width: 250px',
@@ -194,8 +193,7 @@ export default {
               }
             },
             /* description */
-            {name: 'description', label: this.$tr('isite.cms.form.description'), field: 'description', align: 'center', style: 'width: 200px'},            
-            
+            {name: 'description', label: this.$tr('isite.cms.form.description'), field: 'description', align: 'center', style: 'width: 200px'},                        
             {
               name: 'actions', label: this.$tr('isite.cms.form.actions'),
               align: 'center'
@@ -203,7 +201,77 @@ export default {
           ],
           requestParams: {},
           filters: {
-
+            product: {
+              value: [],
+              type: 'select',
+              quickFilter: true,
+              props: {
+                label: 'product',
+                //multiple: true,
+                //useChips: true,
+                useInput: true,
+                rules: [
+                  val => !!val?.length || this.$tr('isite.cms.message.fieldRequired')
+                ],
+              },
+              loadOptions: {
+                apiRoute: 'apiRoutes.quser.users',              
+                select: {
+                  label: 'email',
+                  id: item => `${item.id}`                
+                }
+              }
+            },
+            provider: {
+              value: [],
+              type: 'select',
+              quickFilter: true,
+              props: {
+                label: 'provider',
+                //multiple: true,
+                //useChips: true,
+                useInput: true,
+                rules: [
+                  val => !!val?.length || this.$tr('isite.cms.message.fieldRequired')
+                ],
+              },
+              loadOptions: {
+                apiRoute: 'apiRoutes.quser.users',              
+                select: {
+                  label: 'email',
+                  id: item => `${item.id}`                
+                }
+              }
+            },
+            createdAt: {
+              value: '',
+              quickFilter: true,                          
+              type: 'date',
+              props: {
+                label: this.$tr('isite.cms.form.createdAt')
+              }
+            },
+            status: {
+              value: [],
+              type: 'select',
+              quickFilter: true,
+              props: {
+                label: 'status',
+                //multiple: true,
+                //useChips: true,
+                useInput: true,
+                rules: [
+                  val => !!val?.length || this.$tr('isite.cms.message.fieldRequired')
+                ],
+              },
+              loadOptions: {
+                apiRoute: 'apiRoutes.quser.users',              
+                select: {
+                  label: 'email',
+                  id: item => `${item.id}`                
+                }
+              }
+            },
           },
 
           help: {
