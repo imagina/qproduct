@@ -38,10 +38,10 @@ export default {
       loading: false,
       listConfig: {
         //apiRoute: 'apiRoutes.qproduct.products',
-        apiRoute: 'https://nflow3.imaginacolombia.com/webhook/waruwa',
+        apiRoute: 'https://nflow3.imaginacolombia.com/webhook/waruwa-products',
         permission: '',
         pageActions: {
-          extraActions: ['search', 'new']
+          extraActions: ['search', 'new', 'export']
         },
         read: {
           title: this.$tr('iproduct.cms.productManagement'),
@@ -192,8 +192,8 @@ export default {
                 }
               }
             },
-            /* description */
-            {name: 'description', label: this.$tr('isite.cms.form.description'), field: 'description', align: 'center', style: 'width: 200px'},                        
+            /* observations */
+            {name: 'observations', label: this.$tr('isite.cms.form.observations'), field: 'observations', align: 'center', style: 'width: 200px'},
             {
               name: 'actions', label: this.$tr('isite.cms.form.actions'),
               align: 'center'
