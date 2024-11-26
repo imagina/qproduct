@@ -37,14 +37,15 @@ export default {
       },
       loading: false,
       listConfig: {
-        //apiRoute: 'apiRoutes.qproduct.products',
-        apiRoute: 'https://nflow3.imaginacolombia.com/webhook/waruwa-products',
-        permission: '',
+        apiRoute: 'apiRoutes.qproduct.products',
+        //apiRoute: 'https://nflow3.imaginacolombia.com/webhook/waruwa-products',
+        //permission: '',
+        showAs: 'grid',
         pageActions: {
-          extraActions: ['search', 'new', 'export']
+          extraActions: ['search', 'export', 'grid']
         },
         read: {
-          title: this.$tr('iproduct.cms.productManagement'),
+          title: this.$tr('iproduct.cms.products'),
           tableProps: {
           },
           columns: [

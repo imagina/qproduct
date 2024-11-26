@@ -4,9 +4,11 @@ export default {
       "sidebar": {
         "adminGroup": "Productos", 
         "adminProducts": "Productos",
+        "adminCategories": "Categorias",
       },      
       "label": {},
       "form": {},
+      "products": "Productos"
     }
   }
 }
