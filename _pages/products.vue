@@ -7,7 +7,7 @@
     </div>
 
     <!-- crud form -->
-    <crud ref="crudComponent" :type="null" :crud-data="import('modules/qtask/_crud/tasks')"
+    <crud ref="crudComponent" :type="null" :crud-data="import('modules/qproduct/_crud/products')"
       @created="refreshDynamicList()" @updated="refreshDynamicList()" @deleted="refreshDynamicList()" />
 
     <inner-loading :visible="loading" />
@@ -40,9 +40,9 @@ export default {
         apiRoute: 'apiRoutes.qproduct.products',
         //apiRoute: 'https://nflow3.imaginacolombia.com/webhook/waruwa-products',
         //permission: '',
-        showAs: 'grid',
+        //showAs: 'grid',
         pageActions: {
-          extraActions: ['search', 'export', 'grid']
+          extraActions: ['search', 'new', 'export']
         },
         read: {
           title: this.$tr('iproduct.cms.products'),
@@ -67,6 +67,7 @@ export default {
             {
               name: 'providerPrice', label: '$ Proveedor', field: 'providerPrice', align: 'center',
               //format: (val, row) => row?.status ? row.status.title : '---',              
+              /*
               contentType: (row) => {
                 return {
                   template: 'status',
@@ -77,6 +78,7 @@ export default {
                   }
                 }              
               },
+              */
               dynamicField: {
                 type: 'select',
                 //name: 'status',
@@ -130,7 +132,8 @@ export default {
             /* units */
             {
               name: 'units', label: 'Unidades Sol/Disp', field: 'units', align: 'center',
-              //format: (val, row) => row?.status ? row.status.title : '---',              
+              //format: (val, row) => row?.status ? row.status.title : '---',     
+              /*         
               contentType: (row) => {
                 return {
                   template: 'status',
@@ -141,6 +144,7 @@ export default {
                   }
                 }              
               },
+              */
               dynamicField: {
                 type: 'select',
                 //name: 'status',
