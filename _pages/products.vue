@@ -37,13 +37,13 @@ export default {
       },
       loading: false,
       listConfig: {
-        apiRoute: 'apiRoutes.qproduct.products',
-        //apiRoute: 'https://nflow3.imaginacolombia.com/webhook/waruwa-products',
+        apiRoute: 'apiRoutes.qproduct.products',        
         //permission: '',
         //showAs: 'grid',
         pageActions: {
           extraActions: ['search', 'new', 'export']
         },
+        showAs: 'grid',
         read: {
           title: this.$tr('iproduct.cms.products'),
           tableProps: {
@@ -56,7 +56,7 @@ export default {
             {
               name: 'title', label: 'Producto', field: 'title',
               align: 'right', style: 'max-width: 250px',
-              onClick: (val, row) => this.openShowModal(row)
+              onClick: (val, row) => this.onUpdate(row)
             },
             {
               name: 'providerName', label: 'Proveedor', field: 'providerName',
@@ -101,7 +101,8 @@ export default {
             /* price */
             {
               name: 'price', label: '$ Waruwa', field: 'price', align: 'center',
-              //format: (val, row) => row?.status ? row.status.title : '---',              
+              //format: (val, row) => row?.status ? row.status.title : '---',      
+              /*        
               contentType: (row) => {
                 return {
                   template: 'status',
@@ -110,6 +111,7 @@ export default {
                   }
                 }              
               },
+              */
               dynamicField: {
                 type: 'select',
                 //name: 'status',
@@ -204,6 +206,42 @@ export default {
               align: 'center'
             }
           ],
+          grid: {
+            columns: [
+              {
+                name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id', style: '',
+                onClick: (val, row) => this.openShowModal(row)
+              },
+              {
+                name: 'title', label: this.$tr('isite.cms.form.title'), field: 'title',
+                align: 'rigth', style: 'max-width: 300px;padding: 10px 0px',
+                onClick: (val, row) => this.openShowModal(row)
+              },            
+            ],
+            actions: [
+               {//Open timelogs
+                //icon: 'fa-light fa-pen',
+                name: 'cancel',
+                label: 'Rechazar',
+                style: "width: 100px",
+                align: "center",
+                action: (item) => {
+                  this.onUpdate(item)
+                }
+              },
+              {//Open timelogs
+                //icon: 'fa-light fa-pen',
+                name: 'accept',
+                label: 'Aceptar',
+                style: "width: 100px",
+                color: 'primary',
+                action: (item) => {
+                  this.onUpdate(item)
+                }
+              },
+            ], 
+
+          },
           requestParams: {},
           filters: {
             product: {
@@ -235,6 +273,7 @@ export default {
                 label: 'provider',
                 //multiple: true,
                 //useChips: true,
+                clearable: true,
                 useInput: true,
                 rules: [
                   val => !!val?.length || this.$tr('isite.cms.message.fieldRequired')
@@ -250,10 +289,11 @@ export default {
             },
             createdAt: {
               value: '',
-              quickFilter: true,                          
+              quickFilter: true,
               type: 'date',
               props: {
-                label: this.$tr('isite.cms.form.createdAt')
+                label: this.$tr('isite.cms.form.createdAt'),
+                clearable: true,
               }
             },
             status: {
@@ -264,6 +304,7 @@ export default {
                 label: 'status',
                 //multiple: true,
                 //useChips: true,
+                clearable: true,
                 useInput: true,
                 rules: [
                   val => !!val?.length || this.$tr('isite.cms.message.fieldRequired')
@@ -333,6 +374,7 @@ export default {
       this.selectedRow.showModal = true;
     },
     onUpdate(row) {
+      console.log(row.title)
       this.$refs.crudComponent.update(row);
     },
     onDelete(row) {

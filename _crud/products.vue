@@ -11,9 +11,9 @@ export default {
     crudData() {
       return {
         crudId: this.crudId,
-        entityName: config("main.qproduct.entityNames.category"),
-        apiRoute: 'apiRoutes.qproduct.categories',
-        permission: 'iproduct.categories',
+        entityName: config("main.qproduct.entityNames.products"),
+        apiRoute: 'apiRoutes.qproduct.products',
+        permission: 'iproduct.products',
         //extraFormFields: 'iblog.crud-fields.categories',
         create: {
           title: this.$tr('iproduct.cms.newCategory'),
@@ -21,7 +21,7 @@ export default {
         read: {
           columns: [
             { name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id', style: 'width: 50px' },
-            { name: 'name', label: this.$tr('isite.cms.form.title'), field: 'title', align: 'rigth' },
+            { name: 'title', label: this.$tr('isite.cms.form.title'), field: 'title', align: 'rigth' },
             { name: 'slug', label: this.$tr('isite.cms.form.slug'), field: 'slug', align: 'left' },
             {
               name: 'status',
@@ -179,7 +179,7 @@ export default {
               }
             },
           },
-
+          /*
           externalId: {
             value: 0,
             type: 'treeSelect',
@@ -195,6 +195,7 @@ export default {
               requestParams: { include: 'parent', filter: { status: 1 } }
             }
           },
+          */
 
           sku: {
             value: '',
