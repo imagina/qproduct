@@ -8,7 +8,10 @@ export default {
       },      
       "label": {},
       "form": {},
-      "products": "Productos"
+      "products": "Productos", 
+      "newProduct": "Nuevo Producto",
+      "updateProduct": "Actualizar Producto", 
+      "prices": "Precios"
     }
   }
 }

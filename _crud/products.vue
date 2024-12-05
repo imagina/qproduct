@@ -14,43 +14,12 @@ export default {
         entityName: config("main.qproduct.entityNames.products"),
         apiRoute: 'apiRoutes.qproduct.products',
         permission: 'iproduct.products',
-        //extraFormFields: 'iblog.crud-fields.categories',
         create: {
-          title: this.$tr('iproduct.cms.newCategory'),
+          title: this.$tr('iproduct.cms.newProduct'),
         },
         read: {
-          columns: [
-            { name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id', style: 'width: 50px' },
-            { name: 'title', label: this.$tr('isite.cms.form.title'), field: 'title', align: 'rigth' },
-            { name: 'slug', label: this.$tr('isite.cms.form.slug'), field: 'slug', align: 'left' },
-            {
-              name: 'status',
-              label: this.$tr('isite.cms.form.status'),
-              field: 'status',
-              align: 'left',
-              isTranslatable: true
-            },
-            {
-              name: 'parent', label: this.$tr('isite.cms.form.parent'), field: 'parent', align: 'left',
-              format: val => val ? (val.title ? val.title : '-') : '-'
-            },
-            {
-              name: 'created_at', label: this.$tr('isite.cms.form.createdAt'), field: 'createdAt', align: 'left',
-              format: val => val ? this.$trd(val) : '-',
-            },
-            {
-              name: 'updated_at', label: this.$tr('isite.cms.form.updatedAt'), field: 'updatedAt', align: 'left',
-              format: val => val ? this.$trd(val) : '-',
-            },
-            /*
-            {
-              name: 'deleted_at', label: this.$tr('itask.cms.form.deletedAt'), field: 'deletedAt', align: 'left',
-              format: val => val ? this.$trd(val) : '-',
-            },
-            */
-            { name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left' },
-          ],
-          requestParams: { include: 'parent' },
+          columns: [],
+          requestParams: { include: 'prices'},
           filters: {
             parentId: {
               value: null,
@@ -66,8 +35,8 @@ export default {
           }
         },
         update: {
-          title: this.$tr('iblog.cms.updateCategory'),
-          requestParams: { include: 'parent,buildable' }
+          title: this.$tr('iproduct.cms.updateProduct'),
+          requestParams: { include: 'prices' }
         },
         delete: true,
         formLeft: {
@@ -119,18 +88,10 @@ export default {
                 val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
             },
-          },
-          advancedSummary: {
-            value: '',
-            type: 'html',
-            isTranslatable: true,
-            help: { description: this.$tr('icommerce.cms.form.advancedSummaryHelp') },
-            props: {
-              label: `${this.$tr('icommerce.cms.advancedSummary')}`
-            }
-          },
+          },          
         },
         formRight: {
+          /* status */
           status: {
             value: "1",
             type: 'select',
@@ -145,21 +106,6 @@ export default {
             }
           },
 
-          parentId: {
-            value: 0,
-            type: 'treeSelect',
-            props: {
-              label: this.$tr('isite.cms.form.parent'),
-              options: [
-                { label: this.$tr('isite.cms.label.disabled'), value: 0 },
-              ],
-            },
-            loadOptions: {
-              apiRoute: 'apiRoutes.qproduct.categories',
-              select: { label: 'title', id: 'id' },
-              requestParams: { include: 'parent', filter: { status: 1 } }
-            }
-          },
           categoryId: {
             type: 'crud',
             permission: 'iappointment.appointments.edit-all',
@@ -179,30 +125,13 @@ export default {
               }
             },
           },
-          /*
-          externalId: {
-            value: 0,
-            type: 'treeSelect',
-            props: {
-              label: this.$tr('isite.cms.form.externalId'),
-              options: [
-                { label: this.$tr('isite.cms.label.disabled'), value: 0 },
-              ],
-            },
-            loadOptions: {
-              apiRoute: 'apiRoutes.qproduct.categories',
-              select: { label: 'title', id: 'id' },
-              requestParams: { include: 'parent', filter: { status: 1 } }
-            }
-          },
-          */
 
           sku: {
             value: '',
             type: 'input',
             isTranslatable: true,
             props: {
-              label: `${this.$tr('isite.cms.form.slug')}*`,
+              label: `${this.$tr('isite.cms.form.sku')}*`,
               rules: [
                // val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
@@ -232,19 +161,17 @@ export default {
           },
 
           isInternal: {
-              value: null,
-              type: 'select',
-              props: {
-                label: this.$tr('isite.cms.form.type'),
-                clearable: true,
-                options: [
-                  {label: this.$tr('isite.cms.label.internal'), value: 1},
-                  {label: this.$tr('isite.cms.label.external'), value: 0},
-                ],
-              }
-            },
-
-
+            value: null,
+            type: 'select',
+            props: {
+              label: this.$tr('isite.cms.form.type'),
+              clearable: true,
+              options: [
+                {label: this.$tr('isite.cms.label.internal'), value: 1},
+                {label: this.$tr('isite.cms.label.external'), value: 0},
+              ],
+            }
+          },
         },
       }
     },
