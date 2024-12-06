@@ -75,18 +75,8 @@ export default {
             },                        
             /* price */
             {
-              name: 'price', label: this.$tr('isite.cms.form.price'), field: 'prices', align: 'center',              
-              format: (val, row) => {
-                if(!row?.prices.length)  return '-'
-                const { price} = row.prices.find(price => price.zone == 'mainprice') || '-'
-                return  `$${price}`
-              },              
-              
-              onClick: (val, row) => {
-                this.selectedRow.row = row
-                this.selectedRow.pricesModal = true
-              }
-             
+              name: 'price', label: this.$tr('isite.cms.form.price'), field: 'price', align: 'center',              
+              format: (val) => `$${val}`
             },
             /* units */
             {
