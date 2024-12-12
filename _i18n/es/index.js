@@ -7,7 +7,9 @@ export default {
         "adminCategories": "Categorias",
       },      
       "label": {},
-      "form": {},
+      "form": {
+        "supplier": "Proveedor"
+      },
       "products": "Productos", 
       "newProduct": "Nuevo Producto",
       "updateProduct": "Actualizar Producto", 

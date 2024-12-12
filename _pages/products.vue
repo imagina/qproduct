@@ -108,7 +108,7 @@ export default {
               type: 'select',
               quickFilter: true,
               props: {
-                label: this.$tr('isite.cms.form.suppliers'),
+                label: this.$tr('iproduct.cms.form.supplier'),
                 clearable: true,
                 useInput: true,                
               },
