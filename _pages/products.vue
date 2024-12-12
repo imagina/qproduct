@@ -53,12 +53,9 @@ export default {
       loading: false,
       listConfig: {
         apiRoute: 'apiRoutes.qproduct.products',
-        //permission: '',
-        //showAs: 'grid',
         pageActions: {
           extraActions: ['search', 'new', 'export']
         },
-        //showAs: 'grid',
         read: {
           title: this.$tr('iproduct.cms.products'),
           tableProps: {
@@ -77,10 +74,6 @@ export default {
             {
               name: 'price', label: this.$tr('isite.cms.form.price'), field: 'price', align: 'center',              
               format: (val) => `$${val}`
-            },
-            /* units */
-            {
-              name: 'units', label: 'Unidades Sol/Disp', field: 'units', align: 'center'              
             },
             /* status */
             {
@@ -106,104 +99,29 @@ export default {
               align: 'center'
             }
           ],
-          grid: {
-            columns: [
-              {
-                name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id', style: '',
-                onClick: (val, row) => this.onUpdate(row)
-              },
-              {
-                name: 'title', label: this.$tr('isite.cms.form.title'), field: 'title',
-                align: 'rigth', style: 'max-width: 300px;padding: 10px 0px',
-                onClick: (val, row) => this.onUpdate(row)
-              },
-
-            ],
-
-            actions: [
-              {//Open timelogs
-                //icon: 'fa-light fa-pen',
-                name: 'cancel',
-                label: 'Rechazar',
-                style: "width: 100px",
-                align: "center",
-                action: (item) => {
-                  console.log(item)
-                  this.onUpdate(item)
-                }
-              },
-              {//Open timelogs
-                //icon: 'fa-light fa-pen',
-                name: 'accept',
-                label: 'Aceptar',
-                style: "width: 100px",
-                color: 'primary',
-                action: (item) => {
-                  this.onUpdate(item)
-                }
-              },
-            ],
-
-          },
-
           requestParams: {
             include: 'prices'
           },
           filters: {
-            product: {
-              value: [],
-              type: 'select',
-              quickFilter: true,
-              props: {
-                label: 'product',
-                //multiple: true,
-                //useChips: true,
-                useInput: true,
-                rules: [
-                  val => !!val?.length || this.$tr('isite.cms.message.fieldRequired')
-                ],
-              },
-              loadOptions: {
-                apiRoute: 'apiRoutes.quser.users',
-                select: {
-                  label: 'email',
-                  id: item => `${item.id}`
-                }
-              }
-            },
             provider: {
               value: [],
               type: 'select',
               quickFilter: true,
               props: {
-                label: 'provider',
-                //multiple: true,
-                //useChips: true,
+                label: this.$tr('isite.cms.form.suppliers'),
                 clearable: true,
-                useInput: true,
-                rules: [
-                  val => !!val?.length || this.$tr('isite.cms.message.fieldRequired')
-                ],
+                useInput: true,                
               },
               loadOptions: {
                 apiRoute: 'apiRoutes.quser.users',
+                filterByQuery: true,
                 select: {
                   label: 'email',
                   id: item => `${item.id}`
                 }
               }
             },
-            /*
-            createdAt: {
-              value: '',
-              quickFilter: true,
-              type: 'fullDate',
-              props: {
-                label: this.$tr('isite.cms.form.createdAt'),
-                clearable: true,
-              }
-            },
-            */
+            
             date: {
               value: {
                 //type: 'customRange',
@@ -213,7 +131,7 @@ export default {
               quickFilter: true,
               type: 'dateRange',
               props: {
-                label: 'Date',
+                label: this.$tr('isite.cms.form.date'),
                 clearable: true,
                 removeTime: true,
                 autoClose: true
@@ -223,8 +141,8 @@ export default {
           },
 
           help: {
-            title: this.$tr('itask.cms.taskManagement'),
-            description: this.$tr('itask.cms.taskManagement')
+            title: this.$tr('iproduct.cms.productManagement'),
+            description: this.$tr('iproduct.cms.productManagement')
           }
 
         },
